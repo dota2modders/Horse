@@ -21,8 +21,34 @@ function Dynamic_Wrap ( mt, name )
 		return mt[name]
 	end
 end
+local df = false
+
+function HandleOrder(order)
+	return df;
+end
+
+--ExHook:ExecuteOrders(HandleOrder)
+	 Convars:RegisterCommand('rv', function(name)
+        -- Check if the server ran it
+        df = not df
+    end, '', 0)
+
+    Convars:RegisterCommand('hook', function(name)
+        -- Check if the server ran it
+   --     ExHook:ExecuteOrders(HandleOrder)
+    end, '', 0)
+
+        Convars:RegisterCommand('black', function(name)
+        -- Check if the server ran it
+        local hero = Convars:GetCommandClient():GetAssignedHero()
+        print(hero:GetClassname())
+        print(hero:GetOrigin())
+        CreateUnitByName("npc_dota_creature_black_puck", hero:GetOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS)
+
+    end, '', 0)
 
 print("HORSE LOADED")
 
 require("horse")
+require("ai_core")
 require("util")
